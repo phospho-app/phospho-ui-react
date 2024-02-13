@@ -1,2 +1,3 @@
 # phospho-react
-React components to leverage user feedbacks and phospho logging
+
+Add a user feedback component to leverage phospho logging
