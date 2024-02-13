@@ -1,5 +1,5 @@
 {
-  "name": "phospho-react",
+  "name": "phospho-ui-react",
   "version": "0.0.1",
   "description": "Phospho, React components to record user feedback",
   "main": "./dist/index.d.ts",
