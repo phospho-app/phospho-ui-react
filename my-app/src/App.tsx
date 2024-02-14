@@ -9,6 +9,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <OpenFeedbackDrawer
+          title="Send Feedback"
+          description="Help us improve our product."
           onSubmit={(x: any) => console.log("Submitted")}
           onClose={() => console.log("Closed")}
           source={"user"}
