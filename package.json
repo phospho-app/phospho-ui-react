@@ -1,6 +1,6 @@
 {
   "name": "phospho-ui-react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Phospho, React components to record user feedback",
   "main": "./dist/index.d.ts",
   "exports": {
