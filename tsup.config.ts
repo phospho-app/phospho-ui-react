@@ -8,7 +8,7 @@ export default defineConfig({
   bundle: true,
   outDir: "dist",
   splitting: true,
-  sourcemap: false,
+  sourcemap: true,
   cjsInterop: true,
   keepNames: true,
   minifyIdentifiers: false,

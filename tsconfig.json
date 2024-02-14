@@ -12,6 +12,7 @@
     "strictBindCallApply": true,
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./*"]
     }
