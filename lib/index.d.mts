@@ -1,6 +1,6 @@
 export { sendUserFeedback } from 'phospho';
-import * as react_jsx_runtime from 'react/jsx-runtime';
+import * as React from 'react';
 
-declare function OpenFeedbackDrawer(): react_jsx_runtime.JSX.Element;
+declare const OpenFeedbackDrawer: React.FC;
 
 export { OpenFeedbackDrawer };

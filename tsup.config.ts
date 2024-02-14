@@ -14,7 +14,5 @@ export default defineConfig({
   minifyIdentifiers: false,
   minify: false,
   clean: true,
-  dts: {
-    footer: "declare module 'phospho-ui-react';",
-  },
+  dts: true,
 });
