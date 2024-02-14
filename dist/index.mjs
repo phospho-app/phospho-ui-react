@@ -524,35 +524,42 @@ var FeedbackDrawer = /* @__PURE__ */ __name(({
             title && /* @__PURE__ */ jsx8(DrawerTitle, { children: title }),
             description && /* @__PURE__ */ jsx8(DrawerDescription, { children: description })
           ] }),
-          /* @__PURE__ */ jsxs2("div", { className: "p-4 pb-0", children: [
+          /* @__PURE__ */ jsxs2("div", { className: "flex flex-col space-y-2", children: [
             /* @__PURE__ */ jsx8(
               FormField,
               {
                 control: form.control,
                 name: "flag",
                 render: ({ field }) => /* @__PURE__ */ jsxs2(FormItem, { children: [
-                  /* @__PURE__ */ jsx8(FormControl, { children: /* @__PURE__ */ jsxs2(ToggleGroup, { type: "single", children: [
-                    /* @__PURE__ */ jsx8(
-                      ToggleGroupItem,
-                      {
-                        value: "failure",
-                        onClick: () => {
-                          form.setValue("flag", "failure");
-                        },
-                        children: /* @__PURE__ */ jsx8(ThumbsDown, {})
-                      }
-                    ),
-                    /* @__PURE__ */ jsx8(
-                      ToggleGroupItem,
-                      {
-                        value: "success",
-                        onClick: () => {
-                          form.setValue("flag", "success");
-                        },
-                        children: /* @__PURE__ */ jsx8(ThumbsUp, {})
-                      }
-                    )
-                  ] }) }),
+                  /* @__PURE__ */ jsx8(FormControl, { children: /* @__PURE__ */ jsxs2(
+                    ToggleGroup,
+                    {
+                      type: "single",
+                      className: "flex flew-row space-x-2",
+                      children: [
+                        /* @__PURE__ */ jsx8(
+                          ToggleGroupItem,
+                          {
+                            value: "failure",
+                            onClick: () => {
+                              form.setValue("flag", "failure");
+                            },
+                            children: /* @__PURE__ */ jsx8(ThumbsDown, {})
+                          }
+                        ),
+                        /* @__PURE__ */ jsx8(
+                          ToggleGroupItem,
+                          {
+                            value: "success",
+                            onClick: () => {
+                              form.setValue("flag", "success");
+                            },
+                            children: /* @__PURE__ */ jsx8(ThumbsUp, {})
+                          }
+                        )
+                      ]
+                    }
+                  ) }),
                   /* @__PURE__ */ jsx8(FormMessage, {})
                 ] })
               }
@@ -586,4 +593,3 @@ export {
   FeedbackDrawer,
   sendUserFeedback2 as sendUserFeedback
 };
-//# sourceMappingURL=index.mjs.map

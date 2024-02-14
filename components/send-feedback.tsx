@@ -147,14 +147,17 @@ const FeedbackDrawer: React.FC<FeedbackDrawerProps> = ({
                   <DrawerDescription>{description}</DrawerDescription>
                 )}
               </DrawerHeader>
-              <div className="p-4 pb-0">
+              <div className="flex flex-col space-y-2">
                 <FormField
                   control={form.control}
                   name="flag"
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <ToggleGroup type="single">
+                        <ToggleGroup
+                          type="single"
+                          className="flex flew-row space-x-2"
+                        >
                           <ToggleGroupItem
                             value="failure"
                             onClick={() => {

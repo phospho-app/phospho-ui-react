@@ -524,35 +524,42 @@ var FeedbackDrawer = /* @__PURE__ */ __name(({
             title && /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerTitle, { children: title }),
             description && /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerDescription, { children: description })
           ] }),
-          /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, "div", { className: "p-4 pb-0", children: [
+          /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, "div", { className: "flex flex-col space-y-2", children: [
             /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
               FormField,
               {
                 control: form.control,
                 name: "flag",
                 render: ({ field }) => /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, FormItem, { children: [
-                  /* @__PURE__ */ _jsxruntime.jsx.call(void 0, FormControl, { children: /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, ToggleGroup, { type: "single", children: [
-                    /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
-                      ToggleGroupItem,
-                      {
-                        value: "failure",
-                        onClick: () => {
-                          form.setValue("flag", "failure");
-                        },
-                        children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, _lucidereact.ThumbsDown, {})
-                      }
-                    ),
-                    /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
-                      ToggleGroupItem,
-                      {
-                        value: "success",
-                        onClick: () => {
-                          form.setValue("flag", "success");
-                        },
-                        children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, _lucidereact.ThumbsUp, {})
-                      }
-                    )
-                  ] }) }),
+                  /* @__PURE__ */ _jsxruntime.jsx.call(void 0, FormControl, { children: /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, 
+                    ToggleGroup,
+                    {
+                      type: "single",
+                      className: "flex flew-row space-x-2",
+                      children: [
+                        /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
+                          ToggleGroupItem,
+                          {
+                            value: "failure",
+                            onClick: () => {
+                              form.setValue("flag", "failure");
+                            },
+                            children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, _lucidereact.ThumbsDown, {})
+                          }
+                        ),
+                        /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
+                          ToggleGroupItem,
+                          {
+                            value: "success",
+                            onClick: () => {
+                              form.setValue("flag", "success");
+                            },
+                            children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, _lucidereact.ThumbsUp, {})
+                          }
+                        )
+                      ]
+                    }
+                  ) }),
                   /* @__PURE__ */ _jsxruntime.jsx.call(void 0, FormMessage, {})
                 ] })
               }
@@ -586,4 +593,3 @@ FeedbackDrawer.defaultProps = defaultProps;
 
 
 exports.FeedbackDrawer = FeedbackDrawer; exports.sendUserFeedback = _phospho.sendUserFeedback;
-//# sourceMappingURL=index.js.map
