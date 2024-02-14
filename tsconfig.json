@@ -1,16 +1,29 @@
 {
   "compilerOptions": {
+    // Default
     "target": "ES2015",
-    "module": "ES2015",
-    "types": ["node"],
-    "moduleResolution": "bundler",
     "esModuleInterop": true,
-    "declaration": true,
-    "outDir": "./dist",
+    "forceConsistentCasingInFileNames": true,
+    "strict": false,
     "skipLibCheck": true,
-    "strict": false, // TODO: strict: true
-    "strictBindCallApply": true,
-    "forceConsistentCasingInFileNames": true
+
+    // Added
+    "module": "ES2015",
+    "declaration": true,
+    "declarationDir": "dist",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "moduleResolution": "bundler", //"bundler"
+    "allowSyntheticDefaultImports": true,
+    "emitDeclarationOnly": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "jsx": "react-jsx",
+
+    "types": ["node"],
+    "strictBindCallApply": true
   },
-  "include": ["./src/*"]
+  "include": ["./src/*", "."],
+  "exclude": ["node_modules", "dist", "examples"]
 }
