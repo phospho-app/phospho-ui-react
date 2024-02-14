@@ -16,5 +16,12 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["./src/*", "./components/*", "./lib/*", "globals.css"]
+  "include": [
+    "./src/*",
+    "./components/*",
+    "./lib/*",
+    "globals.css",
+    "tailwind.config.js",
+    "components.json"
+  ]
 }
