@@ -13,8 +13,8 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]
     }
   },
-  "include": ["./src/*"]
+  "include": ["./src/*", "components", "lib"]
 }

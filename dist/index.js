@@ -54,17 +54,17 @@ var __async = (__this, __arguments, generator) => {
 // src/index.tsx
 var _phospho = require('phospho');
 
-// src/components/send-feedback.tsx
+// components/send-feedback.tsx
 
 var _lucidereact = require('lucide-react');
 var _zod = require('zod');
 var _reacthookform = require('react-hook-form');
 var _zod3 = require('@hookform/resolvers/zod');
 
-// src/components/ui/input.tsx
+// components/ui/input.tsx
 var _react = require('react'); var React = _interopRequireWildcard(_react); var React2 = _interopRequireWildcard(_react); var React3 = _interopRequireWildcard(_react); var React5 = _interopRequireWildcard(_react); var React4 = _interopRequireWildcard(_react);
 
-// src/lib/utils.tsx
+// lib/utils.tsx
 var _clsx = require('clsx');
 var _tailwindmerge = require('tailwind-merge');
 function cn(...inputs) {
@@ -72,7 +72,7 @@ function cn(...inputs) {
 }
 __name(cn, "cn");
 
-// src/components/ui/input.tsx
+// components/ui/input.tsx
 var _jsxruntime = require('react/jsx-runtime');
 var Input = React.forwardRef(
   (_a, ref) => {
@@ -92,7 +92,7 @@ var Input = React.forwardRef(
 );
 Input.displayName = "Input";
 
-// src/components/ui/button.tsx
+// components/ui/button.tsx
 
 var _reactslot = require('@radix-ui/react-slot');
 var _classvarianceauthority = require('class-variance-authority');
@@ -137,7 +137,7 @@ var Button = React2.forwardRef(
 );
 Button.displayName = "Button";
 
-// src/components/ui/drawer.tsx
+// components/ui/drawer.tsx
 
 var _vaul = require('vaul');
 
@@ -231,11 +231,11 @@ var DrawerDescription = React3.forwardRef((_a, ref) => {
 });
 DrawerDescription.displayName = _vaul.Drawer.Description.displayName;
 
-// src/components/ui/toggle-group.tsx
+// components/ui/toggle-group.tsx
 
 var _reacttogglegroup = require('@radix-ui/react-toggle-group'); var ToggleGroupPrimitive = _interopRequireWildcard(_reacttogglegroup);
 
-// src/components/ui/toggle.tsx
+// components/ui/toggle.tsx
 
 var _reacttoggle = require('@radix-ui/react-toggle'); var TogglePrimitive = _interopRequireWildcard(_reacttoggle);
 
@@ -272,7 +272,7 @@ var Toggle = React4.forwardRef((_a, ref) => {
 });
 Toggle.displayName = TogglePrimitive.Root.displayName;
 
-// src/components/ui/toggle-group.tsx
+// components/ui/toggle-group.tsx
 
 var ToggleGroupContext = React5.createContext({
   size: "default",
@@ -312,7 +312,7 @@ var ToggleGroupItem = React5.forwardRef((_a, ref) => {
 });
 ToggleGroupItem.displayName = ToggleGroupPrimitive.Item.displayName;
 
-// src/components/send-feedback.tsx
+// components/send-feedback.tsx
 
 var OpenFeedbackDrawer = /* @__PURE__ */ __name((props) => {
   const feedbackSchema = _zod.z.object({

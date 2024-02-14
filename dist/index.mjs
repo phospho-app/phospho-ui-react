@@ -54,17 +54,17 @@ var __async = (__this, __arguments, generator) => {
 // src/index.tsx
 import { sendUserFeedback as sendUserFeedback2 } from "phospho";
 
-// src/components/send-feedback.tsx
+// components/send-feedback.tsx
 import { sendUserFeedback } from "phospho";
 import { ThumbsUp, ThumbsDown } from "lucide-react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-// src/components/ui/input.tsx
+// components/ui/input.tsx
 import * as React from "react";
 
-// src/lib/utils.tsx
+// lib/utils.tsx
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 function cn(...inputs) {
@@ -72,7 +72,7 @@ function cn(...inputs) {
 }
 __name(cn, "cn");
 
-// src/components/ui/input.tsx
+// components/ui/input.tsx
 import { jsx } from "react/jsx-runtime";
 var Input = React.forwardRef(
   (_a, ref) => {
@@ -92,7 +92,7 @@ var Input = React.forwardRef(
 );
 Input.displayName = "Input";
 
-// src/components/ui/button.tsx
+// components/ui/button.tsx
 import * as React2 from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva } from "class-variance-authority";
@@ -137,7 +137,7 @@ var Button = React2.forwardRef(
 );
 Button.displayName = "Button";
 
-// src/components/ui/drawer.tsx
+// components/ui/drawer.tsx
 import * as React3 from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
 import { jsx as jsx3, jsxs } from "react/jsx-runtime";
@@ -231,11 +231,11 @@ var DrawerDescription = React3.forwardRef((_a, ref) => {
 });
 DrawerDescription.displayName = DrawerPrimitive.Description.displayName;
 
-// src/components/ui/toggle-group.tsx
+// components/ui/toggle-group.tsx
 import * as React5 from "react";
 import * as ToggleGroupPrimitive from "@radix-ui/react-toggle-group";
 
-// src/components/ui/toggle.tsx
+// components/ui/toggle.tsx
 import * as React4 from "react";
 import * as TogglePrimitive from "@radix-ui/react-toggle";
 import { cva as cva2 } from "class-variance-authority";
@@ -272,7 +272,7 @@ var Toggle = React4.forwardRef((_a, ref) => {
 });
 Toggle.displayName = TogglePrimitive.Root.displayName;
 
-// src/components/ui/toggle-group.tsx
+// components/ui/toggle-group.tsx
 import { jsx as jsx5 } from "react/jsx-runtime";
 var ToggleGroupContext = React5.createContext({
   size: "default",
@@ -312,7 +312,7 @@ var ToggleGroupItem = React5.forwardRef((_a, ref) => {
 });
 ToggleGroupItem.displayName = ToggleGroupPrimitive.Item.displayName;
 
-// src/components/send-feedback.tsx
+// components/send-feedback.tsx
 import { jsx as jsx6, jsxs as jsxs2 } from "react/jsx-runtime";
 var OpenFeedbackDrawer = /* @__PURE__ */ __name((props) => {
   const feedbackSchema = z.object({

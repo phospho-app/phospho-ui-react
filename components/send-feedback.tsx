@@ -6,8 +6,8 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Input } from "../components/ui/input";
-import { Button } from "../components/ui/button";
+import { Input } from "./ui/input";
+import { Button } from "./ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -17,8 +17,8 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "../components/ui/drawer";
-import { ToggleGroup, ToggleGroupItem } from "../components/ui/toggle-group";
+} from "./ui/drawer";
+import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
 
 interface Feedback {
   flag: "success" | "failure";

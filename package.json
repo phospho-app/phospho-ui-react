@@ -1,8 +1,10 @@
 {
   "name": "phospho-ui-react",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Phospho, React components to record user feedback",
-  "main": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "module": "dist/index.esm.js",
   "exports": {
     ".": {
       "require": "./dist/index.js",
@@ -11,7 +13,7 @@
     }
   },
   "scripts": {
-    "build": "tsup --dts",
+    "build": "tsup",
     "examples": "tsx ./examples/hello.ts"
   },
   "repository": {
@@ -87,7 +89,5 @@
   "browserslist": [
     "> 0.2%",
     "not dead"
-  ],
-  "module": "dist/index.esm.js",
-  "types": "dist/types/index.d.ts"
+  ]
 }
