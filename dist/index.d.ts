@@ -6,13 +6,13 @@ interface Feedback {
     notes: string;
 }
 interface OpenFeedbackDrawerProps {
-    title: string | null;
-    description: string | null;
-    projectId?: string | null;
-    taskId?: string | null;
-    onSubmit: (feedback: Feedback) => void | Promise<void> | null;
-    onClose: () => void | Promise<void> | null;
-    source: string | null;
+    title?: string;
+    description?: string;
+    projectId?: string;
+    taskId?: string;
+    onSubmit?: (feedback: Feedback) => void;
+    onClose?: (feedback: Feedback) => void;
+    source?: string;
 }
 declare const OpenFeedbackDrawer: React.FC<OpenFeedbackDrawerProps>;
 

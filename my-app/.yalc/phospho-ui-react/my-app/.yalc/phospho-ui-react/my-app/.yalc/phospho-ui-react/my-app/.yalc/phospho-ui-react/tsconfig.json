@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "CommonJS",
+    "types": ["node"],
+    // "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "declaration": true,
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "strict": false, // TODO: strict: true
+    "strictBindCallApply": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": ["./src/*", "./components/*", "./lib/*", "."]
+}

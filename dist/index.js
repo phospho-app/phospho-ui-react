@@ -62,7 +62,7 @@ var _reacthookform = require('react-hook-form');
 var _zod3 = require('@hookform/resolvers/zod');
 
 // components/ui/input.tsx
-var _react = require('react'); var React = _interopRequireWildcard(_react); var React2 = _interopRequireWildcard(_react); var React3 = _interopRequireWildcard(_react); var React5 = _interopRequireWildcard(_react); var React4 = _interopRequireWildcard(_react);
+var _react = require('react'); var React = _interopRequireWildcard(_react); var React2 = _interopRequireWildcard(_react); var React3 = _interopRequireWildcard(_react); var React5 = _interopRequireWildcard(_react); var React4 = _interopRequireWildcard(_react); var React7 = _interopRequireWildcard(_react); var React6 = _interopRequireWildcard(_react);
 
 // lib/utils.ts
 var _clsx = require('clsx');
@@ -231,6 +231,131 @@ var DrawerDescription = React3.forwardRef((_a, ref) => {
 });
 DrawerDescription.displayName = _vaul.Drawer.Description.displayName;
 
+// components/ui/form.tsx
+
+
+
+
+
+
+
+
+// components/ui/label.tsx
+
+var _reactlabel = require('@radix-ui/react-label'); var LabelPrimitive = _interopRequireWildcard(_reactlabel);
+
+
+var labelVariants = _classvarianceauthority.cva.call(void 0, 
+  "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+);
+var Label = React4.forwardRef((_a, ref) => {
+  var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
+  return /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
+    LabelPrimitive.Root,
+    __spreadValues({
+      ref,
+      className: cn(labelVariants(), className)
+    }, props)
+  );
+});
+Label.displayName = LabelPrimitive.Root.displayName;
+
+// components/ui/form.tsx
+
+var Form = _reacthookform.FormProvider;
+var FormFieldContext = React5.createContext(
+  {}
+);
+var FormField = /* @__PURE__ */ __name((_a) => {
+  var props = __objRest(_a, []);
+  return /* @__PURE__ */ _jsxruntime.jsx.call(void 0, FormFieldContext.Provider, { value: { name: props.name }, children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, _reacthookform.Controller, __spreadValues({}, props)) });
+}, "FormField");
+var useFormField = /* @__PURE__ */ __name(() => {
+  const fieldContext = React5.useContext(FormFieldContext);
+  const itemContext = React5.useContext(FormItemContext);
+  const { getFieldState, formState } = _reacthookform.useFormContext.call(void 0, );
+  const fieldState = getFieldState(fieldContext.name, formState);
+  if (!fieldContext) {
+    throw new Error("useFormField should be used within <FormField>");
+  }
+  const { id } = itemContext;
+  return __spreadValues({
+    id,
+    name: fieldContext.name,
+    formItemId: `${id}-form-item`,
+    formDescriptionId: `${id}-form-item-description`,
+    formMessageId: `${id}-form-item-message`
+  }, fieldState);
+}, "useFormField");
+var FormItemContext = React5.createContext(
+  {}
+);
+var FormItem = React5.forwardRef((_a, ref) => {
+  var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
+  const id = React5.useId();
+  return /* @__PURE__ */ _jsxruntime.jsx.call(void 0, FormItemContext.Provider, { value: { id }, children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, "div", __spreadValues({ ref, className: cn("space-y-2", className) }, props)) });
+});
+FormItem.displayName = "FormItem";
+var FormLabel = React5.forwardRef((_a, ref) => {
+  var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
+  const { error, formItemId } = useFormField();
+  return /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
+    Label,
+    __spreadValues({
+      ref,
+      className: cn(error && "text-destructive", className),
+      htmlFor: formItemId
+    }, props)
+  );
+});
+FormLabel.displayName = "FormLabel";
+var FormControl = React5.forwardRef((_a, ref) => {
+  var props = __objRest(_a, []);
+  const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
+  return /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
+    _reactslot.Slot,
+    __spreadValues({
+      ref,
+      id: formItemId,
+      "aria-describedby": !error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`,
+      "aria-invalid": !!error
+    }, props)
+  );
+});
+FormControl.displayName = "FormControl";
+var FormDescription = React5.forwardRef((_a, ref) => {
+  var _b = _a, { className } = _b, props = __objRest(_b, ["className"]);
+  const { formDescriptionId } = useFormField();
+  return /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
+    "p",
+    __spreadValues({
+      ref,
+      id: formDescriptionId,
+      className: cn("text-sm text-muted-foreground", className)
+    }, props)
+  );
+});
+FormDescription.displayName = "FormDescription";
+var FormMessage = React5.forwardRef((_a, ref) => {
+  var _b = _a, { className, children } = _b, props = __objRest(_b, ["className", "children"]);
+  const { error, formMessageId } = useFormField();
+  const body = error ? String(error == null ? void 0 : error.message) : children;
+  if (!body) {
+    return null;
+  }
+  return /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
+    "p",
+    __spreadProps(__spreadValues({
+      ref,
+      id: formMessageId,
+      className: cn("text-sm font-medium text-destructive", className)
+    }, props), {
+      children: body
+    })
+  );
+});
+FormMessage.displayName = "FormMessage";
+
 // components/ui/toggle-group.tsx
 
 var _reacttogglegroup = require('@radix-ui/react-toggle-group'); var ToggleGroupPrimitive = _interopRequireWildcard(_reacttogglegroup);
@@ -260,7 +385,7 @@ var toggleVariants = _classvarianceauthority.cva.call(void 0,
     }
   }
 );
-var Toggle = React4.forwardRef((_a, ref) => {
+var Toggle = React6.forwardRef((_a, ref) => {
   var _b = _a, { className, variant, size } = _b, props = __objRest(_b, ["className", "variant", "size"]);
   return /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
     TogglePrimitive.Root,
@@ -274,11 +399,11 @@ Toggle.displayName = TogglePrimitive.Root.displayName;
 
 // components/ui/toggle-group.tsx
 
-var ToggleGroupContext = React5.createContext({
+var ToggleGroupContext = React7.createContext({
   size: "default",
   variant: "default"
 });
-var ToggleGroup = React5.forwardRef((_a, ref) => {
+var ToggleGroup = React7.forwardRef((_a, ref) => {
   var _b = _a, { className, variant, size, children } = _b, props = __objRest(_b, ["className", "variant", "size", "children"]);
   return /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
     ToggleGroupPrimitive.Root,
@@ -291,9 +416,9 @@ var ToggleGroup = React5.forwardRef((_a, ref) => {
   );
 });
 ToggleGroup.displayName = ToggleGroupPrimitive.Root.displayName;
-var ToggleGroupItem = React5.forwardRef((_a, ref) => {
+var ToggleGroupItem = React7.forwardRef((_a, ref) => {
   var _b = _a, { className, children, variant, size } = _b, props = __objRest(_b, ["className", "children", "variant", "size"]);
-  const context = React5.useContext(ToggleGroupContext);
+  const context = React7.useContext(ToggleGroupContext);
   return /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
     ToggleGroupPrimitive.Item,
     __spreadProps(__spreadValues({
@@ -314,100 +439,140 @@ ToggleGroupItem.displayName = ToggleGroupPrimitive.Item.displayName;
 
 // components/send-feedback.tsx
 
+var defaultProps = {
+  title: "Send Feedback",
+  description: "Help us improve our product.",
+  projectId: void 0,
+  taskId: void 0,
+  onSubmit: void 0,
+  onClose: void 0,
+  source: void 0
+};
 var OpenFeedbackDrawer = /* @__PURE__ */ __name(({
-  title = null,
-  description = null,
-  projectId = null,
-  taskId = null,
-  onSubmit = null,
-  onClose = null,
-  source = null
+  title,
+  description,
+  projectId,
+  taskId,
+  onSubmit,
+  onClose,
+  source
 }) => {
   const feedbackSchema = _zod.z.object({
-    flag: _zod.z.enum(["success", "failure"]),
-    notes: _zod.z.string().max(1e3),
-    source: _zod.z.string().optional()
+    flag: _zod.z.union([_zod.z.literal("success"), _zod.z.literal("failure")]),
+    notes: _zod.z.string().max(1e3, { message: "Notes must be less than 1000 characters." })
+  }).refine((data) => data.flag === "success" || data.flag === "failure", {
+    message: "Flag must be success or failure.",
+    path: ["flag"]
   });
   const form = _reacthookform.useForm.call(void 0, {
-    resolver: _zod3.zodResolver.call(void 0, feedbackSchema)
+    resolver: _zod3.zodResolver.call(void 0, feedbackSchema),
+    defaultValues: {
+      notes: ""
+    }
   });
-  const onSubmitFunc = /* @__PURE__ */ __name((feedback) => __async(void 0, null, function* () {
-    _phospho.sendUserFeedback.call(void 0, {
-      projectId,
-      taskId,
-      flag: feedback.flag,
-      notes: feedback.notes,
-      source
-    });
-    if (onSubmit !== null) {
+  const onSubmitFunc = /* @__PURE__ */ __name((values) => __async(void 0, null, function* () {
+    try {
+      _phospho.sendUserFeedback.call(void 0, {
+        projectId,
+        taskId,
+        flag: values.flag,
+        notes: values.notes,
+        source
+      });
+    } catch (error) {
+      console.error("Error submitting feedback to phospho", error);
+    }
+    if (onSubmit) {
       try {
-        yield onSubmit(feedback);
+        onSubmit({
+          flag: values.flag,
+          notes: values.notes
+        });
       } catch (error) {
-        console.error("Error submitting feedback", error);
+        console.error("Error when running onSubmit", error);
       }
     }
-    if (onClose !== null) {
-      onClose();
+    if (onClose) {
+      try {
+        onClose({
+          flag: values.flag,
+          notes: values.notes
+        });
+      } catch (error) {
+        console.error("Error when running onClose", error);
+      }
     }
   }), "onSubmitFunc");
   return /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, _vaul.Drawer.Root, { children: [
     /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerTrigger, { asChild: true, children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, Button, { variant: "outline", children: "Send Feedback" }) }),
-    /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerContent, { children: /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, "div", { className: "mx-auto w-full max-w-sm", children: [
-      /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, DrawerHeader, { children: [
-        title !== null && /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerTitle, { children: title }),
-        description !== null && /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerDescription, { children: description })
-      ] }),
-      /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, "div", { className: "p-4 pb-0", children: [
-        /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, ToggleGroup, { type: "single", children: [
-          /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
-            ToggleGroupItem,
-            {
-              value: "success",
-              onClick: () => {
-                form.setValue("flag", "success");
-              },
-              children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, _lucidereact.ThumbsUp, {})
-            }
-          ),
-          /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
-            ToggleGroupItem,
-            {
-              value: "failure",
-              onClick: () => {
-                form.setValue("flag", "failure");
-              },
-              children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, _lucidereact.ThumbsDown, {})
-            }
-          )
-        ] }),
-        /* @__PURE__ */ _jsxruntime.jsx.call(void 0, Input, { placeholder: "Tell us how it went.", type: "textarea" })
-      ] }),
-      /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, DrawerFooter, { children: [
-        /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
-          Button,
-          {
-            onClick: () => {
-              form.handleSubmit(onSubmitFunc);
-            },
-            children: "Send"
-          }
-        ),
-        /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerClose, { asChild: true, children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
-          Button,
-          {
-            variant: "outline",
-            onClick: () => {
-              if (onClose !== null) {
-                onClose();
+    /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerContent, { children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, "div", { className: "mx-auto w-full max-w-sm", children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, Form, __spreadProps(__spreadValues({}, form), { children: /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, 
+      "form",
+      {
+        onSubmit: form.handleSubmit(onSubmitFunc),
+        className: "space-y-8",
+        children: [
+          /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, DrawerHeader, { children: [
+            title && /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerTitle, { children: title }),
+            description && /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerDescription, { children: description })
+          ] }),
+          /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, "div", { className: "p-4 pb-0", children: [
+            /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
+              FormField,
+              {
+                control: form.control,
+                name: "flag",
+                render: ({ field }) => /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, FormItem, { children: [
+                  /* @__PURE__ */ _jsxruntime.jsx.call(void 0, FormControl, { children: /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, ToggleGroup, { type: "single", children: [
+                    /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
+                      ToggleGroupItem,
+                      {
+                        value: "failure",
+                        onClick: () => {
+                          form.setValue("flag", "failure");
+                        },
+                        children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, _lucidereact.ThumbsDown, {})
+                      }
+                    ),
+                    /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
+                      ToggleGroupItem,
+                      {
+                        value: "success",
+                        onClick: () => {
+                          form.setValue("flag", "success");
+                        },
+                        children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, _lucidereact.ThumbsUp, {})
+                      }
+                    )
+                  ] }) }),
+                  /* @__PURE__ */ _jsxruntime.jsx.call(void 0, FormMessage, {})
+                ] })
               }
-            },
-            children: "Cancel"
-          }
-        ) })
-      ] })
-    ] }) })
+            ),
+            /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
+              FormField,
+              {
+                control: form.control,
+                name: "notes",
+                render: ({ field }) => /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, FormItem, { children: [
+                  /* @__PURE__ */ _jsxruntime.jsx.call(void 0, FormControl, { children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
+                    Input,
+                    __spreadValues({
+                      placeholder: "Tell us how it went.",
+                      type: "textarea"
+                    }, field)
+                  ) }),
+                  /* @__PURE__ */ _jsxruntime.jsx.call(void 0, FormMessage, {})
+                ] })
+              }
+            )
+          ] }),
+          /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerFooter, { children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerClose, { asChild: true, children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, Button, { type: "submit", disabled: !form.formState.isValid, children: "Send" }) }) })
+        ]
+      }
+    ) })) }) })
   ] });
 }, "OpenFeedbackDrawer");
+OpenFeedbackDrawer.defaultProps = defaultProps;
 var send_feedback_default = OpenFeedbackDrawer;
 
 

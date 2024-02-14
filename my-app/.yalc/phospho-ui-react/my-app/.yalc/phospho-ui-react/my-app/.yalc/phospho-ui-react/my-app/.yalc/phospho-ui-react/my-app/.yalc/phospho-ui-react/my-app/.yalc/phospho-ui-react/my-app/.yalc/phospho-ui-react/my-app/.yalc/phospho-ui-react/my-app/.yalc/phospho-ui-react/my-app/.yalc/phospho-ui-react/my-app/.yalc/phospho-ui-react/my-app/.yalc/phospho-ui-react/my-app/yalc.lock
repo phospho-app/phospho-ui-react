@@ -1,0 +1,10 @@
+{
+  "version": "v1",
+  "packages": {
+    "phospho-ui-react": {
+      "signature": "acb4965a2cb02fc3e2ad4aff27cebd23",
+      "file": true,
+      "replaced": "^0.1"
+    }
+  }
+}

@@ -18,6 +18,15 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
 
 interface Feedback {
@@ -26,55 +35,91 @@ interface Feedback {
 }
 
 interface OpenFeedbackDrawerProps {
-  title: string | null;
-  description: string | null;
-  projectId?: string | null;
-  taskId?: string | null;
-  onSubmit: (feedback: Feedback) => void | Promise<void> | null;
-  onClose: () => void | Promise<void> | null;
-  source: string | null;
+  title?: string;
+  description?: string;
+  projectId?: string;
+  taskId?: string;
+  onSubmit?: (feedback: Feedback) => void;
+  onClose?: (feedback: Feedback) => void;
+  source?: string;
 }
 
+const defaultProps: OpenFeedbackDrawerProps = {
+  title: "Send Feedback",
+  description: "Help us improve our product.",
+  projectId: undefined,
+  taskId: undefined,
+  onSubmit: undefined,
+  onClose: undefined,
+  source: undefined,
+};
+
 const OpenFeedbackDrawer: React.FC<OpenFeedbackDrawerProps> = ({
-  title = null,
-  description = null,
-  projectId = null,
-  taskId = null,
-  onSubmit = null,
-  onClose = null,
-  source = null,
+  title,
+  description,
+  projectId,
+  taskId,
+  onSubmit,
+  onClose,
+  source,
 }: OpenFeedbackDrawerProps) => {
   // This component is the feedback form that is displayed when the user clicks the "Send Feedback" button
 
   // The feedback has flag, notes, user. Flag must be success or failure. Notes can't be longer than 1000 characters. User is optional.
-  const feedbackSchema = z.object({
-    flag: z.enum(["success", "failure"]),
-    notes: z.string().max(1000),
-    source: z.string().optional(),
-  });
+  const feedbackSchema = z
+    .object({
+      flag: z.union([z.literal("success"), z.literal("failure")]),
+      notes: z
+        .string()
+        .max(1000, { message: "Notes must be less than 1000 characters." }),
+    })
+    .refine((data) => data.flag === "success" || data.flag === "failure", {
+      message: "Flag must be success or failure.",
+      path: ["flag"],
+    });
 
   const form = useForm<z.infer<typeof feedbackSchema>>({
     resolver: zodResolver(feedbackSchema),
+    defaultValues: {
+      notes: "",
+    },
   });
 
-  const onSubmitFunc = async (feedback: Feedback) => {
+  // Define the fields
+
+  const onSubmitFunc = async (values: z.infer<typeof feedbackSchema>) => {
     // Send to phospho
-    sendUserFeedback({
-      projectId: projectId,
-      taskId: taskId,
-      flag: feedback.flag,
-      notes: feedback.notes,
-      source: source,
-    });
-    if (onSubmit !== null) {
+    try {
+      sendUserFeedback({
+        projectId: projectId,
+        taskId: taskId,
+        flag: values.flag,
+        notes: values.notes,
+        source: source,
+      });
+    } catch (error) {
+      console.error("Error submitting feedback to phospho", error);
+    }
+
+    if (onSubmit) {
       try {
-        await onSubmit(feedback);
+        onSubmit({
+          flag: values.flag,
+          notes: values.notes,
+        });
       } catch (error) {
-        console.error("Error submitting feedback", error);
+        console.error("Error when running onSubmit", error);
       }
     }
-    if (onClose !== null) {
-      onClose();
+    if (onClose) {
+      try {
+        onClose({
+          flag: values.flag,
+          notes: values.notes,
+        });
+      } catch (error) {
+        console.error("Error when running onClose", error);
+      }
     }
   };
 
@@ -88,59 +133,80 @@ const OpenFeedbackDrawer: React.FC<OpenFeedbackDrawerProps> = ({
       </DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
-          <DrawerHeader>
-            {title !== null && <DrawerTitle>{title}</DrawerTitle>}
-            {description !== null && (
-              <DrawerDescription>{description}</DrawerDescription>
-            )}
-          </DrawerHeader>
-          <div className="p-4 pb-0">
-            <ToggleGroup type="single">
-              <ToggleGroupItem
-                value="success"
-                onClick={() => {
-                  form.setValue("flag", "success");
-                }}
-              >
-                <ThumbsUp />
-              </ToggleGroupItem>
-              <ToggleGroupItem
-                value="failure"
-                onClick={() => {
-                  form.setValue("flag", "failure");
-                }}
-              >
-                <ThumbsDown />
-              </ToggleGroupItem>
-            </ToggleGroup>
-            <Input placeholder="Tell us how it went." type="textarea" />
-          </div>
-          <DrawerFooter>
-            <Button
-              onClick={() => {
-                form.handleSubmit(onSubmitFunc);
-              }}
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmitFunc)}
+              className="space-y-8"
             >
-              Send
-            </Button>
-            <DrawerClose asChild>
-              <Button
-                variant="outline"
-                onClick={() => {
-                  if (onClose !== null) {
-                    onClose();
-                  }
-                }}
-              >
-                Cancel
-              </Button>
-            </DrawerClose>
-          </DrawerFooter>
+              <DrawerHeader>
+                {title && <DrawerTitle>{title}</DrawerTitle>}
+                {description && (
+                  <DrawerDescription>{description}</DrawerDescription>
+                )}
+              </DrawerHeader>
+              <div className="p-4 pb-0">
+                <FormField
+                  control={form.control}
+                  name="flag"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <ToggleGroup type="single">
+                          <ToggleGroupItem
+                            value="failure"
+                            onClick={() => {
+                              form.setValue("flag", "failure");
+                            }}
+                          >
+                            <ThumbsDown />
+                          </ToggleGroupItem>
+                          <ToggleGroupItem
+                            value="success"
+                            onClick={() => {
+                              form.setValue("flag", "success");
+                            }}
+                          >
+                            <ThumbsUp />
+                          </ToggleGroupItem>
+                        </ToggleGroup>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="notes"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          placeholder="Tell us how it went."
+                          type="textarea"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <DrawerFooter>
+                <DrawerClose asChild>
+                  <Button type="submit" disabled={!form.formState.isValid}>
+                    Send
+                  </Button>
+                </DrawerClose>
+              </DrawerFooter>
+            </form>
+          </Form>
         </div>
       </DrawerContent>
     </Drawer.Root>
   );
 };
+
+OpenFeedbackDrawer.defaultProps = defaultProps;
 
 // Export the component
 export default OpenFeedbackDrawer;
