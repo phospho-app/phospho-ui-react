@@ -1,6 +1,6 @@
 {
   "name": "phospho-ui-react",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Phospho, React components to record user feedback",
   "main": "./dist/index.d.ts",
   "exports": {
@@ -28,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/phospho-app/phosphojs/issues"
   },
-  "homepage": "https://github.com/phospho-app/phosphojs/phospho-react#readme",
+  "homepage": "https://github.com/phospho-app/phospho-react#readme",
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-dialog": "^1.0.5",
