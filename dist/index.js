@@ -504,7 +504,16 @@ var FeedbackDrawer = /* @__PURE__ */ __name(({
     }
   }), "onSubmitFunc");
   return /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, _vaul.Drawer.Root, { children: [
-    /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerTrigger, { asChild: true, children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, Button, { variant: "outline", children: "Send Feedback" }) }),
+    /* @__PURE__ */ _jsxruntime.jsx.call(void 0, 
+      DrawerTrigger,
+      {
+        asChild: true,
+        onClick: () => {
+          form.reset();
+        },
+        children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, Button, { variant: "outline", children: "Send Feedback" })
+      }
+    ),
     /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerContent, { children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, "div", { className: "mx-auto w-full max-w-sm", children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, Form, __spreadProps(__spreadValues({}, form), { children: /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, 
       "form",
       {

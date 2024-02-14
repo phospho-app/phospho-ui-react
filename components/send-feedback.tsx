@@ -126,7 +126,12 @@ const FeedbackDrawer: React.FC<FeedbackDrawerProps> = ({
 
   return (
     <Drawer.Root>
-      <DrawerTrigger asChild>
+      <DrawerTrigger
+        asChild
+        onClick={() => {
+          form.reset();
+        }}
+      >
         <Button variant="outline">Send Feedback</Button>
       </DrawerTrigger>
       <DrawerContent>

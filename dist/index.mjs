@@ -504,7 +504,16 @@ var FeedbackDrawer = /* @__PURE__ */ __name(({
     }
   }), "onSubmitFunc");
   return /* @__PURE__ */ jsxs2(DrawerPrimitive.Root, { children: [
-    /* @__PURE__ */ jsx8(DrawerTrigger, { asChild: true, children: /* @__PURE__ */ jsx8(Button, { variant: "outline", children: "Send Feedback" }) }),
+    /* @__PURE__ */ jsx8(
+      DrawerTrigger,
+      {
+        asChild: true,
+        onClick: () => {
+          form.reset();
+        },
+        children: /* @__PURE__ */ jsx8(Button, { variant: "outline", children: "Send Feedback" })
+      }
+    ),
     /* @__PURE__ */ jsx8(DrawerContent, { children: /* @__PURE__ */ jsx8("div", { className: "mx-auto w-full max-w-sm", children: /* @__PURE__ */ jsx8(Form, __spreadProps(__spreadValues({}, form), { children: /* @__PURE__ */ jsxs2(
       "form",
       {
