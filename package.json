@@ -4,7 +4,7 @@
   "description": "Phospho, React components to record user feedback",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "module": "dist/index.esm.js",
+  "module": "./dist/index.esm.js",
   "exports": {
     ".": {
       "require": "./dist/index.js",
@@ -18,19 +18,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/phospho-app/phosphojs.git"
+    "url": "git+https://github.com/phospho-app/phospho-ui-react.git"
   },
   "keywords": [
+    "react",
+    "user feedback",
     "llm",
-    "ai",
-    "analytics"
+    "analytics",
+    "ai"
   ],
   "author": "phospho team contact@phospho.app (https://phospho.ai)",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/phospho-app/phosphojs/issues"
+    "url": "https://github.com/phospho-app/phospho-ui-react/issues"
   },
-  "homepage": "https://github.com/phospho-app/phospho-react#readme",
+  "homepage": "https://github.com/phospho-app/phospho-ui-react#readme",
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
     "@radix-ui/react-dialog": "^1.0.5",

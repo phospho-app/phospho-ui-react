@@ -64,7 +64,7 @@ var _zod3 = require('@hookform/resolvers/zod');
 // components/ui/input.tsx
 var _react = require('react'); var React = _interopRequireWildcard(_react); var React2 = _interopRequireWildcard(_react); var React3 = _interopRequireWildcard(_react); var React5 = _interopRequireWildcard(_react); var React4 = _interopRequireWildcard(_react);
 
-// lib/utils.tsx
+// lib/utils.ts
 var _clsx = require('clsx');
 var _tailwindmerge = require('tailwind-merge');
 function cn(...inputs) {
@@ -314,7 +314,15 @@ ToggleGroupItem.displayName = ToggleGroupPrimitive.Item.displayName;
 
 // components/send-feedback.tsx
 
-var OpenFeedbackDrawer = /* @__PURE__ */ __name((props) => {
+var OpenFeedbackDrawer = /* @__PURE__ */ __name(({
+  title = null,
+  description = null,
+  projectId = null,
+  taskId = null,
+  onSubmit = null,
+  onClose = null,
+  source = null
+}) => {
   const feedbackSchema = _zod.z.object({
     flag: _zod.z.enum(["success", "failure"]),
     notes: _zod.z.string().max(1e3),
@@ -323,31 +331,31 @@ var OpenFeedbackDrawer = /* @__PURE__ */ __name((props) => {
   const form = _reacthookform.useForm.call(void 0, {
     resolver: _zod3.zodResolver.call(void 0, feedbackSchema)
   });
-  const onSubmit = /* @__PURE__ */ __name((feedback) => __async(void 0, null, function* () {
+  const onSubmitFunc = /* @__PURE__ */ __name((feedback) => __async(void 0, null, function* () {
     _phospho.sendUserFeedback.call(void 0, {
-      projectId: props.projectId,
-      taskId: props.taskId,
+      projectId,
+      taskId,
       flag: feedback.flag,
       notes: feedback.notes,
-      source: props.source
+      source
     });
-    if (props.onSubmit !== null) {
+    if (onSubmit !== null) {
       try {
-        yield props.onSubmit(feedback);
+        yield onSubmit(feedback);
       } catch (error) {
         console.error("Error submitting feedback", error);
       }
     }
-    if (props.onClose !== null) {
-      props.onClose();
+    if (onClose !== null) {
+      onClose();
     }
-  }), "onSubmit");
+  }), "onSubmitFunc");
   return /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, _vaul.Drawer.Root, { children: [
     /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerTrigger, { asChild: true, children: /* @__PURE__ */ _jsxruntime.jsx.call(void 0, Button, { variant: "outline", children: "Send Feedback" }) }),
     /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerContent, { children: /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, "div", { className: "mx-auto w-full max-w-sm", children: [
       /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, DrawerHeader, { children: [
-        props.title !== null && /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerTitle, { children: props.title }),
-        props.description !== null && /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerDescription, { children: "props.description" })
+        title !== null && /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerTitle, { children: title }),
+        description !== null && /* @__PURE__ */ _jsxruntime.jsx.call(void 0, DrawerDescription, { children: description })
       ] }),
       /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, "div", { className: "p-4 pb-0", children: [
         /* @__PURE__ */ _jsxruntime.jsxs.call(void 0, ToggleGroup, { type: "single", children: [
@@ -379,7 +387,7 @@ var OpenFeedbackDrawer = /* @__PURE__ */ __name((props) => {
           Button,
           {
             onClick: () => {
-              form.handleSubmit(onSubmit);
+              form.handleSubmit(onSubmitFunc);
             },
             children: "Send"
           }
@@ -389,8 +397,8 @@ var OpenFeedbackDrawer = /* @__PURE__ */ __name((props) => {
           {
             variant: "outline",
             onClick: () => {
-              if (props.onClose !== null) {
-                props.onClose();
+              if (onClose !== null) {
+                onClose();
               }
             },
             children: "Cancel"

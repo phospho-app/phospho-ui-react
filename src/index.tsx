@@ -1,3 +1,4 @@
+import "../globals.css";
 import { sendUserFeedback } from "phospho";
 import OpenFeedbackDrawer from "@/components/send-feedback";
 

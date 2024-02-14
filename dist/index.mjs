@@ -64,7 +64,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 // components/ui/input.tsx
 import * as React from "react";
 
-// lib/utils.tsx
+// lib/utils.ts
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 function cn(...inputs) {
@@ -314,7 +314,15 @@ ToggleGroupItem.displayName = ToggleGroupPrimitive.Item.displayName;
 
 // components/send-feedback.tsx
 import { jsx as jsx6, jsxs as jsxs2 } from "react/jsx-runtime";
-var OpenFeedbackDrawer = /* @__PURE__ */ __name((props) => {
+var OpenFeedbackDrawer = /* @__PURE__ */ __name(({
+  title = null,
+  description = null,
+  projectId = null,
+  taskId = null,
+  onSubmit = null,
+  onClose = null,
+  source = null
+}) => {
   const feedbackSchema = z.object({
     flag: z.enum(["success", "failure"]),
     notes: z.string().max(1e3),
@@ -323,31 +331,31 @@ var OpenFeedbackDrawer = /* @__PURE__ */ __name((props) => {
   const form = useForm({
     resolver: zodResolver(feedbackSchema)
   });
-  const onSubmit = /* @__PURE__ */ __name((feedback) => __async(void 0, null, function* () {
+  const onSubmitFunc = /* @__PURE__ */ __name((feedback) => __async(void 0, null, function* () {
     sendUserFeedback({
-      projectId: props.projectId,
-      taskId: props.taskId,
+      projectId,
+      taskId,
       flag: feedback.flag,
       notes: feedback.notes,
-      source: props.source
+      source
     });
-    if (props.onSubmit !== null) {
+    if (onSubmit !== null) {
       try {
-        yield props.onSubmit(feedback);
+        yield onSubmit(feedback);
       } catch (error) {
         console.error("Error submitting feedback", error);
       }
     }
-    if (props.onClose !== null) {
-      props.onClose();
+    if (onClose !== null) {
+      onClose();
     }
-  }), "onSubmit");
+  }), "onSubmitFunc");
   return /* @__PURE__ */ jsxs2(DrawerPrimitive.Root, { children: [
     /* @__PURE__ */ jsx6(DrawerTrigger, { asChild: true, children: /* @__PURE__ */ jsx6(Button, { variant: "outline", children: "Send Feedback" }) }),
     /* @__PURE__ */ jsx6(DrawerContent, { children: /* @__PURE__ */ jsxs2("div", { className: "mx-auto w-full max-w-sm", children: [
       /* @__PURE__ */ jsxs2(DrawerHeader, { children: [
-        props.title !== null && /* @__PURE__ */ jsx6(DrawerTitle, { children: props.title }),
-        props.description !== null && /* @__PURE__ */ jsx6(DrawerDescription, { children: "props.description" })
+        title !== null && /* @__PURE__ */ jsx6(DrawerTitle, { children: title }),
+        description !== null && /* @__PURE__ */ jsx6(DrawerDescription, { children: description })
       ] }),
       /* @__PURE__ */ jsxs2("div", { className: "p-4 pb-0", children: [
         /* @__PURE__ */ jsxs2(ToggleGroup, { type: "single", children: [
@@ -379,7 +387,7 @@ var OpenFeedbackDrawer = /* @__PURE__ */ __name((props) => {
           Button,
           {
             onClick: () => {
-              form.handleSubmit(onSubmit);
+              form.handleSubmit(onSubmitFunc);
             },
             children: "Send"
           }
@@ -389,8 +397,8 @@ var OpenFeedbackDrawer = /* @__PURE__ */ __name((props) => {
           {
             variant: "outline",
             onClick: () => {
-              if (props.onClose !== null) {
-                props.onClose();
+              if (onClose !== null) {
+                onClose();
               }
             },
             children: "Cancel"

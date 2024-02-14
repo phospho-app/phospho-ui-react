@@ -35,9 +35,15 @@ interface OpenFeedbackDrawerProps {
   source: string | null;
 }
 
-const OpenFeedbackDrawer: React.FC<OpenFeedbackDrawerProps> = (
-  props: OpenFeedbackDrawerProps
-) => {
+const OpenFeedbackDrawer: React.FC<OpenFeedbackDrawerProps> = ({
+  title = null,
+  description = null,
+  projectId = null,
+  taskId = null,
+  onSubmit = null,
+  onClose = null,
+  source = null,
+}: OpenFeedbackDrawerProps) => {
   // This component is the feedback form that is displayed when the user clicks the "Send Feedback" button
 
   // The feedback has flag, notes, user. Flag must be success or failure. Notes can't be longer than 1000 characters. User is optional.
@@ -51,24 +57,24 @@ const OpenFeedbackDrawer: React.FC<OpenFeedbackDrawerProps> = (
     resolver: zodResolver(feedbackSchema),
   });
 
-  const onSubmit = async (feedback: Feedback) => {
+  const onSubmitFunc = async (feedback: Feedback) => {
     // Send to phospho
     sendUserFeedback({
-      projectId: props.projectId,
-      taskId: props.taskId,
+      projectId: projectId,
+      taskId: taskId,
       flag: feedback.flag,
       notes: feedback.notes,
-      source: props.source,
+      source: source,
     });
-    if (props.onSubmit !== null) {
+    if (onSubmit !== null) {
       try {
-        await props.onSubmit(feedback);
+        await onSubmit(feedback);
       } catch (error) {
         console.error("Error submitting feedback", error);
       }
     }
-    if (props.onClose !== null) {
-      props.onClose();
+    if (onClose !== null) {
+      onClose();
     }
   };
 
@@ -83,9 +89,9 @@ const OpenFeedbackDrawer: React.FC<OpenFeedbackDrawerProps> = (
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
-            {props.title !== null && <DrawerTitle>{props.title}</DrawerTitle>}
-            {props.description !== null && (
-              <DrawerDescription>props.description</DrawerDescription>
+            {title !== null && <DrawerTitle>{title}</DrawerTitle>}
+            {description !== null && (
+              <DrawerDescription>{description}</DrawerDescription>
             )}
           </DrawerHeader>
           <div className="p-4 pb-0">
@@ -112,7 +118,7 @@ const OpenFeedbackDrawer: React.FC<OpenFeedbackDrawerProps> = (
           <DrawerFooter>
             <Button
               onClick={() => {
-                form.handleSubmit(onSubmit);
+                form.handleSubmit(onSubmitFunc);
               }}
             >
               Send
@@ -121,8 +127,8 @@ const OpenFeedbackDrawer: React.FC<OpenFeedbackDrawerProps> = (
               <Button
                 variant="outline"
                 onClick={() => {
-                  if (props.onClose !== null) {
-                    props.onClose();
+                  if (onClose !== null) {
+                    onClose();
                   }
                 }}
               >
