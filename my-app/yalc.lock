@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "phospho-ui-react": {
-      "signature": "66a6868b72b890342fa9b11e35505c04",
+      "signature": "44f440c896ba6ec47f2d6cb86e70f0a0",
       "file": true,
       "replaced": "^0.1"
     }
