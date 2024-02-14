@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { OpenFeedbackDrawer } from "phospho-ui-react";
+import { OpenFeedbackDrawer } from "../../../lib";
 
 function App() {
   return (
