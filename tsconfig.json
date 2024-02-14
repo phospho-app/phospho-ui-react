@@ -6,7 +6,7 @@
     "moduleResolution": "bundler",
     "esModuleInterop": true,
     "declaration": true,
-    "outDir": "lib",
+    "outDir": "dist",
     "skipLibCheck": true,
     "strict": false, // TODO: strict: true
     "strictBindCallApply": true,
@@ -16,5 +16,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["./src/*", "./lib/*.d.ts"]
+  "include": ["./src/*"]
 }
