@@ -21,10 +21,8 @@ import {
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { ToggleGroup, ToggleGroupItem } from "./ui/toggle-group";
@@ -34,7 +32,7 @@ interface Feedback {
   notes: string;
 }
 
-interface OpenFeedbackDrawerProps {
+interface FeedbackDrawerProps {
   title?: string;
   description?: string;
   projectId?: string;
@@ -44,7 +42,7 @@ interface OpenFeedbackDrawerProps {
   source?: string;
 }
 
-const defaultProps: OpenFeedbackDrawerProps = {
+const defaultProps: FeedbackDrawerProps = {
   title: "Send Feedback",
   description: "Help us improve our product.",
   projectId: undefined,
@@ -54,7 +52,7 @@ const defaultProps: OpenFeedbackDrawerProps = {
   source: undefined,
 };
 
-const OpenFeedbackDrawer: React.FC<OpenFeedbackDrawerProps> = ({
+const FeedbackDrawer: React.FC<FeedbackDrawerProps> = ({
   title,
   description,
   projectId,
@@ -62,7 +60,7 @@ const OpenFeedbackDrawer: React.FC<OpenFeedbackDrawerProps> = ({
   onSubmit,
   onClose,
   source,
-}: OpenFeedbackDrawerProps) => {
+}: FeedbackDrawerProps) => {
   // This component is the feedback form that is displayed when the user clicks the "Send Feedback" button
 
   // The feedback has flag, notes, user. Flag must be success or failure. Notes can't be longer than 1000 characters. User is optional.
@@ -72,7 +70,6 @@ const OpenFeedbackDrawer: React.FC<OpenFeedbackDrawerProps> = ({
       notes: z
         .string()
         .max(1000, { message: "Notes must be less than 1000 characters." }),
-      source: z.string().optional(),
     })
     .refine((data) => data.flag === "success" || data.flag === "failure", {
       message: "Flag must be success or failure.",
@@ -207,8 +204,8 @@ const OpenFeedbackDrawer: React.FC<OpenFeedbackDrawerProps> = ({
   );
 };
 
-OpenFeedbackDrawer.defaultProps = defaultProps;
+FeedbackDrawer.defaultProps = defaultProps;
 
 // Export the component
-export default OpenFeedbackDrawer;
-// export { OpenFeedbackDrawer };
+export default FeedbackDrawer;
+export { FeedbackDrawer, FeedbackDrawerProps, Feedback };

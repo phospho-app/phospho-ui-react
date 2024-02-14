@@ -448,7 +448,7 @@ var defaultProps = {
   onClose: void 0,
   source: void 0
 };
-var OpenFeedbackDrawer = /* @__PURE__ */ __name(({
+var FeedbackDrawer = /* @__PURE__ */ __name(({
   title,
   description,
   projectId,
@@ -459,8 +459,7 @@ var OpenFeedbackDrawer = /* @__PURE__ */ __name(({
 }) => {
   const feedbackSchema = _zod.z.object({
     flag: _zod.z.union([_zod.z.literal("success"), _zod.z.literal("failure")]),
-    notes: _zod.z.string().max(1e3, { message: "Notes must be less than 1000 characters." }),
-    source: _zod.z.string().optional()
+    notes: _zod.z.string().max(1e3, { message: "Notes must be less than 1000 characters." })
   }).refine((data) => data.flag === "success" || data.flag === "failure", {
     message: "Flag must be success or failure.",
     path: ["flag"]
@@ -572,11 +571,10 @@ var OpenFeedbackDrawer = /* @__PURE__ */ __name(({
       }
     ) })) }) })
   ] });
-}, "OpenFeedbackDrawer");
-OpenFeedbackDrawer.defaultProps = defaultProps;
-var send_feedback_default = OpenFeedbackDrawer;
+}, "FeedbackDrawer");
+FeedbackDrawer.defaultProps = defaultProps;
 
 
 
-exports.OpenFeedbackDrawer = send_feedback_default; exports.sendUserFeedback = _phospho.sendUserFeedback;
+exports.FeedbackDrawer = FeedbackDrawer; exports.sendUserFeedback = _phospho.sendUserFeedback;
 //# sourceMappingURL=index.js.map

@@ -1,9 +1,9 @@
 import "./globals.css";
 import { sendUserFeedback } from "phospho";
-import OpenFeedbackDrawer from "@/components/send-feedback";
+import {
+  Feedback,
+  FeedbackDrawerProps,
+  FeedbackDrawer,
+} from "@/components/send-feedback";
 
-interface Test {
-  test: string;
-}
-
-export { sendUserFeedback, OpenFeedbackDrawer };
+export { sendUserFeedback, FeedbackDrawer, FeedbackDrawerProps, Feedback };

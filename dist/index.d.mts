@@ -5,7 +5,7 @@ interface Feedback {
     flag: "success" | "failure";
     notes: string;
 }
-interface OpenFeedbackDrawerProps {
+interface FeedbackDrawerProps {
     title?: string;
     description?: string;
     projectId?: string;
@@ -14,6 +14,6 @@ interface OpenFeedbackDrawerProps {
     onClose?: (feedback: Feedback) => void;
     source?: string;
 }
-declare const OpenFeedbackDrawer: React.FC<OpenFeedbackDrawerProps>;
+declare const FeedbackDrawer: React.FC<FeedbackDrawerProps>;
 
-export { OpenFeedbackDrawer };
+export { type Feedback, FeedbackDrawer, type FeedbackDrawerProps };

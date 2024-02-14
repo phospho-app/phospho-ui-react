@@ -448,7 +448,7 @@ var defaultProps = {
   onClose: void 0,
   source: void 0
 };
-var OpenFeedbackDrawer = /* @__PURE__ */ __name(({
+var FeedbackDrawer = /* @__PURE__ */ __name(({
   title,
   description,
   projectId,
@@ -571,11 +571,10 @@ var OpenFeedbackDrawer = /* @__PURE__ */ __name(({
       }
     ) })) }) })
   ] });
-}, "OpenFeedbackDrawer");
-OpenFeedbackDrawer.defaultProps = defaultProps;
-var send_feedback_default = OpenFeedbackDrawer;
+}, "FeedbackDrawer");
+FeedbackDrawer.defaultProps = defaultProps;
 
 
 
-exports.OpenFeedbackDrawer = send_feedback_default; exports.sendUserFeedback = _phospho.sendUserFeedback;
+exports.FeedbackDrawer = FeedbackDrawer; exports.sendUserFeedback = _phospho.sendUserFeedback;
 //# sourceMappingURL=index.js.map

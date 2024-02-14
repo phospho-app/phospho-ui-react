@@ -1,6 +1,6 @@
 {
   "name": "phospho-ui-react",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Phospho, React components to record user feedback",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -61,5 +61,5 @@
     "> 0.2%",
     "not dead"
   ],
-  "yalcSig": "974d027df3bf7318942b2b115c54c6a1"
+  "yalcSig": "ddb798abbebf783f0ad6fa1432862e1a"
 }

@@ -17,5 +17,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["./src/*", "./components/*", "./lib/*", "."]
+  "include": ["./src/*", "./components/*", "./lib/*"],
+  "exclude": ["node_modules", "dist", "./examples/*"]
 }

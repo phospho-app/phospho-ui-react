@@ -448,7 +448,7 @@ var defaultProps = {
   onClose: void 0,
   source: void 0
 };
-var OpenFeedbackDrawer = /* @__PURE__ */ __name(({
+var FeedbackDrawer = /* @__PURE__ */ __name(({
   title,
   description,
   projectId,
@@ -459,8 +459,7 @@ var OpenFeedbackDrawer = /* @__PURE__ */ __name(({
 }) => {
   const feedbackSchema = z.object({
     flag: z.union([z.literal("success"), z.literal("failure")]),
-    notes: z.string().max(1e3, { message: "Notes must be less than 1000 characters." }),
-    source: z.string().optional()
+    notes: z.string().max(1e3, { message: "Notes must be less than 1000 characters." })
   }).refine((data) => data.flag === "success" || data.flag === "failure", {
     message: "Flag must be success or failure.",
     path: ["flag"]
@@ -572,11 +571,10 @@ var OpenFeedbackDrawer = /* @__PURE__ */ __name(({
       }
     ) })) }) })
   ] });
-}, "OpenFeedbackDrawer");
-OpenFeedbackDrawer.defaultProps = defaultProps;
-var send_feedback_default = OpenFeedbackDrawer;
+}, "FeedbackDrawer");
+FeedbackDrawer.defaultProps = defaultProps;
 export {
-  send_feedback_default as OpenFeedbackDrawer,
+  FeedbackDrawer,
   sendUserFeedback2 as sendUserFeedback
 };
 //# sourceMappingURL=index.mjs.map
