@@ -2,7 +2,7 @@
 
 Add a user feedback component to leverage phospho logging
 
-## Usage
+## Usage
 
 ```javascript
 import "./App.css";
