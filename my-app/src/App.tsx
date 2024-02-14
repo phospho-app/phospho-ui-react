@@ -1,5 +1,3 @@
-import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import { FeedbackDrawer, Feedback } from "phospho-ui-react";
 import "phospho-ui-react/dist/index.css";
