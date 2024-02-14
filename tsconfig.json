@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES2015",
-    "module": "ES2015",
+    "target": "es2016",
+    "module": "CommonJS",
     "types": ["node"],
-    "moduleResolution": "bundler",
+    // "moduleResolution": "bundler",
     "esModuleInterop": true,
     "declaration": true,
     "outDir": "dist",
@@ -17,12 +17,5 @@
       "@/*": ["./*"]
     }
   },
-  "include": [
-    "./src/*",
-    "./components/*",
-    "./lib/*",
-    "globals.css",
-    "tailwind.config.js",
-    "components.json"
-  ]
+  "include": ["./src/*", "./components/*", "./lib/*", "."]
 }
